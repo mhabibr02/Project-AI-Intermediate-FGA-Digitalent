@@ -37,17 +37,43 @@ builder..AddAzureOpenAIChatCompletion(
 var kernel = builder.Build();
 
 string language = "French";
-string prompt = @$"Create a list of helpful phrases and 
-    words in ${language} a traveler would find useful.";
+string history = @"I'm traveling with my kids and one of them has a peanut allergy.";
+
+// Assign a persona to the prompt
+string prompt = @$"
+    You are a travel assistant. You are helpful, creative, and very friendly. 
+    Consider the traveler's background:
+    ${history}
+
+    Create a list of helpful phrases and words in ${language} a traveler would find useful.
+
+    Group phrases by category. Include common direction words. 
+    Display the phrases in the following format: 
+    Hello - Ciao [chow]
+
+    Begin with: 'Here are some phrases in ${language} you may find helpful:' 
+    and end with: 'I hope this helps you on your trip!'";
 
 var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
 
 // Output
-// Phrases for dealing with peanut allergy:
-// My child has a peanut allergy - Mon enfant a une allergie aux arachides [mon on-fon ah oon ah-lair-zhee oh a-rah-sheed]
-// Is there a peanut-free option available? - Y a-t-il une option sans arachide? [ee ah-teel une oh-pee-syon sahn ah-rah-sheed]
+// Here are some phrases in French you may find helpful:
 
-// Phrases for directions:
-// Turn left - Tournez à gauche [toor-nay ah gohsh]
-// Turn right - Tournez à droite [toor-nay ah dwaht]
+// Greetings:
+// - Hello - Bonjour [bon-zhur]
+// - Goodbye - Au revoir [oh ruh-vwar]
+// - Thank you - Merci [mehr-see]
+
+// Directions:
+// - Go straight ahead - Allez tout droit [ah-lay too dwa]
+// - Turn left/right - Tournez à gauche/droite [toor-nay ah gohsh/dwaht]
+// - It's on the left/right - C'est à gauche/droite [say ah gohsh/dwaht]
+
+// Food:
+// - Does this contain peanuts? - Est-ce que cela contient des cacahuètes? [ess-kuh suh suh-la kohn-tee-eh day kah-kah-weht?]
+// - My child has a peanut allergy - Mon enfant est allergique aux cacahuètes [mohn ahn-fahn ay ah-lair-gee-k oh kah-kah-weht]
+
+// ...
+
+// I hope this helps you on your trip!
