@@ -43,12 +43,11 @@ string prompt = @$"Create a list of helpful phrases and
 var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
 
-// Restaurant Phrases:
-// - Water, please - De l'eau, s'il vous plaît [duh loh, seel voo pleh]
-// - Check, please - L'addition, s'il vous plaît [lah-di-syo(n), seel voo pleh]
-// - Bon appétit - Bon appétit [bohn ah-peh-teet]
+// Output
+// Phrases for dealing with peanut allergy:
+// My child has a peanut allergy - Mon enfant a une allergie aux arachides [mon on-fon ah oon ah-lair-zhee oh a-rah-sheed]
+// Is there a peanut-free option available? - Y a-t-il une option sans arachide? [ee ah-teel une oh-pee-syon sahn ah-rah-sheed]
 
-// Transportation Phrases:
-// - Where is the train station? - Où est la gare? [oo-eh lah gahr]
-// - How do I get to...? - Comment aller à...? [ko-mahn tah-lay ah]
-// - I need a taxi - J'ai besoin d'un taxi [zhay buh-zwan dunn tah-xee]
+// Phrases for directions:
+// Turn left - Tournez à gauche [toor-nay ah gohsh]
+// Turn right - Tournez à droite [toor-nay ah dwaht]
