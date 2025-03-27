@@ -24,3 +24,16 @@ string prompt = @"What ingredients am I missing from my current list of ingredie
 var result = await kernel.InvokePromptAsync(prompt, new(settings));
 
 Console.WriteLine(result);
+
+// Output
+// Based on the list of ingredients for aloo jeera, you are missing the following items:
+
+// - Cumin seeds
+// - Green chilies
+// - Ginger
+// - Turmeric powder
+// - Red chili powder
+// - Coriander powder
+// - Fresh coriander leaves
+// - Salt
+// - Oil
