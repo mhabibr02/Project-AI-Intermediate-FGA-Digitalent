@@ -18,15 +18,11 @@ kernel.ImportPluginFromType<MusicLibraryPlugin>();
 kernel.ImportPluginFromType<MusicConcertPlugin>();
 kernel.ImportPluginFromPromptDirectory("Prompts");
 kernel.ImportPluginFromType<CurrencyConverter>();
-kernel.ImportPluginFromType<ConversationSummaryPlugin>();
 var prompts = kernel.ImportPluginFromPromptDirectory("Prompts");
 
-var result = await kernel.InvokeAsync("CurrencyConverter", 
-    "ConvertAmount", 
+var result = await kernel.InvokeAsync(prompts["GetTargetCurrencies"],
     new() {
-        {"targetCurrencyCode", "USD"}, 
-        {"amount", "52000"}, 
-        {"baseCurrencyCode", "VND"}
+        {"input", "How many Australian Dollars is 140,000 Korean Won worth?"}
     }
 );
 
