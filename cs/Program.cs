@@ -27,3 +27,25 @@ var intent = await kernel.InvokeAsync<string>(
     prompts["GetIntent"], 
     new() {{ "input",  input }}
 );
+
+switch (intent) {
+    case "ConvertCurrency": 
+        var currencyText = await kernel.InvokeAsync<string>(
+            prompts["GetTargetCurrencies"], 
+            new() {{ "input",  input }}
+        );
+        var currencyInfo = currencyText!.Split("|");
+        var result = await kernel.InvokeAsync("CurrencyConverter", 
+            "ConvertAmount", 
+            new() {
+                {"targetCurrencyCode", currencyInfo[0]}, 
+                {"baseCurrencyCode", currencyInfo[1]},
+                {"amount", currencyInfo[2]}, 
+            }
+        );
+        Console.WriteLine(result);
+        break;
+    default:
+        Console.WriteLine("Other intent detected");
+        break;
+}
