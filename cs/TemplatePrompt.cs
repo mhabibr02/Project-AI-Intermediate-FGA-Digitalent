@@ -33,3 +33,15 @@ var result = await kernel.InvokePromptAsync(prompt,
     new KernelArguments() {{ "history", history }});
 
 Console.WriteLine(result);
+
+// Output
+
+// 1. Lentil and vegetable soup - a hearty, filling soup that is perfect for a cold day. This recipe is vegetarian and can easily be adapted to accommodate allergies.
+
+// 2. Cauliflower "steaks" - a delicious and healthy main course that is sure to satisfy even the pickiest of eaters. This recipe is vegetarian and can easily be made vegan.
+
+// 3. Quinoa salad with roasted vegetables - a healthy and filling salad that is perfect for any occasion. This recipe is vegetarian and can easily be adapted to accommodate allergies.
+
+// 4. Peanut-free pad Thai - a classic dish made without peanut sauce, perfect for those with peanut allergies. This recipe is vegetarian and can easily be made vegan.
+
+// 5. Black bean and sweet potato enchiladas - a delicious and healthy twist C#on traditional enchiladas. This recipe is vegetarian and can easily be made vegan.
