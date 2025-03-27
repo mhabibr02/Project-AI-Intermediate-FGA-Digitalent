@@ -39,3 +39,5 @@ string prompt = @"Can you recommend a song from the music library?";
 var result = await kernel.InvokePromptAsync(prompt, new(settings));
 
 Console.WriteLine(result);
+
+// Based on your recently played music, I recommend you listen to the song "Luv(sic)". It falls under the genres of hiphop and rap, which aligns with some of your recently played songs. Enjoy!
