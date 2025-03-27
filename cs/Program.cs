@@ -27,3 +27,5 @@ var result = await kernel.InvokeAsync(prompts["GetTargetCurrencies"],
 );
 
 Console.WriteLine(result);
+
+// AUD|KRW|140000
