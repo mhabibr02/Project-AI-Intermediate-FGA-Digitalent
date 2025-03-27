@@ -39,40 +39,23 @@ var kernel = builder.Build();
 
 string language = "French";
 string history = @"I'm traveling with my kids and one of them has a peanut allergy.";
-string input = @"I'm planning an anniversary trip with my spouse. We like hiking, mountains, 
-    and beaches. Our travel budget is $15000";
+string input = @"I have a vacation from June 1 to July 22. I want to go to Greece. 
+    I live in Chicago.";
 
 // Assign a persona to the prompt
 string prompt = @$"
-    You are a travel assistant. You are helpful, creative, and very friendly. 
-    Consider the traveler's background:
-    ${history}
+<message role=""system"">Instructions: Identify the from and to destinations 
+and dates from the user's request</message>
 
-    Create a list of helpful phrases and words in ${language} a traveler would find useful.
+<message role=""user"">Can you give me a list of flights from Seattle to Tokyo? 
+I want to travel from March 11 to March 18.</message>
 
-    Group phrases by category. Include common direction words. 
-    Display the phrases in the following format: 
-    Hello - Ciao [chow]
+<message role=""assistant"">Seattle|Tokyo|03/11/2024|03/18/2024</message>
 
-    Begin with: 'Here are some phrases in ${language} you may find helpful:' 
-    and end with: 'I hope this helps you on your trip!'";
-
+<message role=""user"">${input}</message>";
 var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
 
 // Output
 
-// That sounds like a great trip ahead! Here are a few suggestions:
-
-// 1. New Zealand - With stunning mountain ranges, iconic hiking trails, and beautiful beaches, New Zealand is a popular destination for outdoor enthusiasts. Some must-visit spots include the Milford Track, Fox Glacier, and Abel Tasman National Park.
-
-// 2. Hawaii - Known for its picturesque beaches, Hawaii is also home to several stunning hiking trails. The Kalalau Trail on Kauai is a popular trail that offers breathtaking views of the Na Pali Coast.
-
-// 3. Costa Rica - Costa Rica boasts beautiful beaches and breathtaking mountains. Hike through the Monteverde Cloud Forest Reserve and catch a glimpse of exotic wildlife like the resplendent quetzal, or take a dip in the turquoise waters of Playa Manuel Antonio.
-
-// 4. Banff National Park, Canada - Located in the Canadian Rockies, Banff National Park offers some of the most stunning mountain scenery in the world. Explore the park's many hiking trails, relax in hot springs, and take in the beauty of the Canadian wilderness.
-
-// 5. Amalfi Coast, Italy - The Amalfi Coast is a picturesque stretch of coastline in Southern Italy that offers stunning views of the Mediterranean Sea. Take a hike along the famous Path of the Gods or enjoy a romantic stroll through one of the Amalfi Coast's charming towns like Positano or Ravello.
-
-// These are just a few of many options, but with a budget of $15000, you should be able to have a fantastic trip to any of these destinations!
-
+// Chicago|Greece|06/01/2024|07/22/2024
