@@ -15,18 +15,6 @@ string endpoint = config["endpoint"]!;
 string apiKey = config["apiKey"]!;
 
 builder.Plugins.AddFromType<ConversationSummaryPlugin>();
-var kernel = builder.Build();
-
-string input = @"I'm a vegan in search of new recipes. I love spicy food! 
-Can you give me a list of breakfast recipes that are vegan friendly?";
-
-var result = await kernel.InvokeAsync(
-    "ConversationSummaryPlugin", 
-    "GetConversationActionItems", 
-    new() {{ "input", input }});
-
-Console.WriteLine(result);
-
 var builder = Kernel.CreateBuilder();
 builder..AddAzureOpenAIChatCompletion(
     "your-deployment-name",
@@ -42,3 +30,16 @@ string prompt = @$"Create a list of helpful phrases and
 
 var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
+
+// Output
+// 1. Bonjour - Hello
+// 2. Merci - Thank you
+// 3. Oui - Yes
+// 4. Non - No
+// 5. S'il vous plaît - Please
+// 6. Excusez-moi - Excuse me
+// 7. Parlez-vous anglais? - Do you speak English?
+// 8. Je ne comprends pas - I don't understand
+// 9. Pouvez-vous m'aider? - Can you help me? 
+// 10. Combien ça coûte? - How much does it cost?
+// 11. Où est la gare? - Where is the train station?
