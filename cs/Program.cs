@@ -13,6 +13,11 @@ var config = new ConfigurationBuilder()
 string modelId = config["modelId"]!;
 string endpoint = config["endpoint"]!;
 string apiKey = config["apiKey"]!;
+string prompt = @$"Create a list of helpful phrases and 
+    words in ${language} a traveler would find useful.
+
+    Group phrases by category. Display the phrases in 
+    the following format: Hello - Ciao [chow]";
 
 builder.Plugins.AddFromType<ConversationSummaryPlugin>();
 var builder = Kernel.CreateBuilder();
