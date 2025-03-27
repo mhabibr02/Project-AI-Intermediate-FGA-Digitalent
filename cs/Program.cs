@@ -17,27 +17,17 @@ var kernel = builder.Build();
 kernel.ImportPluginFromType<MusicLibraryPlugin>();
 kernel.ImportPluginFromType<MusicConcertPlugin>();
 kernel.ImportPluginFromPromptDirectory("Prompts");
+kernel.ImportPluginFromType<CurrencyConverter>();
+kernel.ImportPluginFromType<ConversationSummaryPlugin>();
+var prompts = kernel.ImportPluginFromPromptDirectory("Prompts");
 
-OpenAIPromptExecutionSettings settings = new()
-{
-    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
-};
-
-var songSuggesterFunction = kernel.CreateFunctionFromPrompt(
-    promptTemplate: @"Based on the user's recently played music:
-        {{$recentlyPlayedSongs}}
-        recommend a song to the user from the music library:
-        {{$musicLibrary}}",
-    functionName: "SuggestSong",
-    description: "Recommend a song from the library"
+var result = await kernel.InvokeAsync("CurrencyConverter", 
+    "ConvertAmount", 
+    new() {
+        {"targetCurrencyCode", "USD"}, 
+        {"amount", "52000"}, 
+        {"baseCurrencyCode", "VND"}
+    }
 );
 
-kernel.Plugins.AddFromFunctions("SuggestSong", [songSuggesterFunction]);
-
-string prompt = @"Add this song to the recently played songs list:  title: 'Touch', artist: 'Cat's Eye', genre: 'Pop'";
-
-var result = await kernel.InvokePromptAsync(prompt, new(settings));
-
 Console.WriteLine(result);
-
-// I have added the song 'Touch' by Cat's Eye to the recently played songs list.
