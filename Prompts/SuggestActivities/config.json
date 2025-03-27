@@ -9,15 +9,15 @@
         }
     },
     "input_variables": [
-        {
-            "name": "history",
-            "description": "Background information about the user",
-            "required": true
-        },
-        {
-            "name": "destination",
-            "description": "The user's travel destination",
-            "required": true
-        }
+  {
+      "name": "history",
+      "description": "Some background information about the user",
+      "required": false
+  },
+  {
+      "name": "destination",
+      "description": "The destination a user wants to visit",
+      "required": true
+  }
     ]
 }
