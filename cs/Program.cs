@@ -2,6 +2,7 @@
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Microsoft.SemanticKernel.Plugins.Core;
 
 string filePath = Path.GetFullPath("../../appsettings.json");
 var config = new ConfigurationBuilder()
@@ -24,4 +25,20 @@ var result = await kernel.InvokeAsync(
     "GetConversationActionItems", 
     new() {{ "input", input }});
 
+Console.WriteLine(result);
+
+var builder = Kernel.CreateBuilder();
+builder..AddAzureOpenAIChatCompletion(
+    "your-deployment-name",
+    "your-endpoint",
+    "your-api-key",
+    "deployment-model");
+
+var kernel = builder.Build();
+
+string language = "French";
+string prompt = @$"Create a list of helpful phrases and 
+    words in ${language} a traveler would find useful.";
+
+var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
