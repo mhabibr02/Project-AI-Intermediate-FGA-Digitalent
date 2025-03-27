@@ -13,19 +13,20 @@ builder.AddAzureOpenAIChatCompletion(
   "deployment-model");
 
 var kernel = builder.Build();
+
 kernel.ImportPluginFromType<MusicLibraryPlugin>();
+kernel.ImportPluginFromType<MusicConcertPlugin>();
+kernel.ImportPluginFromPromptDirectory("Prompts");
 
-string prompt = @"This is a list of music available to the user:
-    {{MusicLibraryPlugin.GetMusicLibrary}} 
+OpenAIPromptExecutionSettings settings = new()
+{
+    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+};
 
-    This is a list of music the user has recently played:
-    {{MusicLibraryPlugin.GetRecentPlays}}
+string prompt = @"I live in Portland OR USA. Based on my recently 
+    played songs and a list of upcoming concerts, which concert 
+    do you recommend?";
 
-    Based on their recently played music, suggest a song from
-    the list to play next";
+var result = await kernel.InvokePromptAsync(prompt, new(settings));
 
-var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
-    }
-);
-
