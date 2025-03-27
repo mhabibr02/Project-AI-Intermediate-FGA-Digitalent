@@ -1,4 +1,4 @@
-var plugins = kernel.CreatePluginFromPromptDirectory("Prompts");
+var chordProgressionPlugin = kernel.CreatePluginFromPromptDirectory("Prompts/ChordProgressions");
 string input = "G, C";
 
 var result = await kernel.InvokeAsync(
