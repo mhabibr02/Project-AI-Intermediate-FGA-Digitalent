@@ -20,12 +20,10 @@ kernel.ImportPluginFromPromptDirectory("Prompts");
 kernel.ImportPluginFromType<CurrencyConverter>();
 var prompts = kernel.ImportPluginFromPromptDirectory("Prompts");
 
-var result = await kernel.InvokeAsync(prompts["GetTargetCurrencies"],
-    new() {
-        {"input", "How many Australian Dollars is 140,000 Korean Won worth?"}
-    }
+Console.WriteLine("What would you like to do?");
+var input = Console.ReadLine();
+
+var intent = await kernel.InvokeAsync<string>(
+    prompts["GetIntent"], 
+    new() {{ "input",  input }}
 );
-
-Console.WriteLine(result);
-
-// AUD|KRW|140000
