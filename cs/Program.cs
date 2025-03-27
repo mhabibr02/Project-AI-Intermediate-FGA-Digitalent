@@ -34,10 +34,10 @@ var songSuggesterFunction = kernel.CreateFunctionFromPrompt(
 
 kernel.Plugins.AddFromFunctions("SuggestSong", [songSuggesterFunction]);
 
-string prompt = @"Can you recommend a song from the music library?";
+string prompt = @"Add this song to the recently played songs list:  title: 'Touch', artist: 'Cat's Eye', genre: 'Pop'";
 
 var result = await kernel.InvokePromptAsync(prompt, new(settings));
 
 Console.WriteLine(result);
 
-// Based on your recently played music, I recommend you listen to the song "Luv(sic)". It falls under the genres of hiphop and rap, which aligns with some of your recently played songs. Enjoy!
+// I have added the song 'Touch' by Cat's Eye to the recently played songs list.
