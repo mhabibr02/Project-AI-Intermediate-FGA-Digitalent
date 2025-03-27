@@ -34,20 +34,14 @@ var intent = await kernel.InvokeAsync<string>(
 
 switch (intent) {
     case "ConvertCurrency": 
-        var currencyText = await kernel.InvokeAsync<string>(
-            prompts["GetTargetCurrencies"], 
-            new() {{ "input",  input }}
-        );
-        var currencyInfo = currencyText!.Split("|");
-        var result = await kernel.InvokeAsync("CurrencyConverter", 
-            "ConvertAmount", 
-            new() {
-                {"targetCurrencyCode", currencyInfo[0]}, 
-                {"baseCurrencyCode", currencyInfo[1]},
-                {"amount", currencyInfo[2]}, 
-            }
-        );
-        Console.WriteLine(result);
+        // ...Code you entered previously...
+        break;
+    case "SuggestDestinations":
+    case "SuggestActivities":
+    case "HelpfulPhrases":
+    case "Translate":
+        var autoInvokeResult = await kernel.InvokePromptAsync(input!, new(settings));
+        Console.WriteLine(autoInvokeResult);
         break;
     default:
         Console.WriteLine("Other intent detected");
