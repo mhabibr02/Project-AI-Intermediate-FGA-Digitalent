@@ -10,12 +10,18 @@ builder.AddAzureOpenAIChatCompletion(
   "your-endpoint",
   "your-api-key",
   "deployment-model");
-var kernel = builder.Build();
-kernel.ImportPluginFromType<TodoListPlugin>();
 
-var result = await kernel.InvokeAsync<string>(
-  "TodoListPlugin", 
-  "CompleteTask", 
-  new() {{ "task", "Buy groceries" }}
+var kernel = builder.Build();
+kernel.ImportPluginFromType<MusicLibraryPlugin>();
+
+var result = await kernel.InvokeAsync(
+    "MusicLibraryPlugin", 
+    "AddToRecentlyPlayed", 
+    new() {
+        ["artist"] = "Tiara", 
+        ["song"] = "Danse", 
+        ["genre"] = "French pop, electropop, pop"
+    }
 );
+
 Console.WriteLine(result);
