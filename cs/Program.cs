@@ -16,16 +16,17 @@ string apiKey = config["apiKey"]!;
 string language = "French";
 string history = @"I'm traveling with my kids and one of them 
     has a peanut allergy.";
-string prompt = @$"Consider the traveler's background:
-    ${history}
+string prompt = @$"
+    The following is a conversation with an AI travel assistant. 
+    The assistant is helpful, creative, and very friendly.
 
-    Create a list of helpful phrases and words in 
-    ${language} a traveler would find useful.
+    <message role=""user"">Can you give me some travel destination suggestions?</message>
 
-    Group phrases by category. Include common direction 
-    words. Display the phrases in the following format: 
-    Hello - Ciao [chow]";
+    <message role=""assistant"">Of course! Do you have a budget or any specific 
+    activities in mind?</message>
 
+    <message role=""user"">${input}</message>";
+    
 builder.Plugins.AddFromType<ConversationSummaryPlugin>();
 var builder = Kernel.CreateBuilder();
 builder..AddAzureOpenAIChatCompletion(
@@ -38,6 +39,8 @@ var kernel = builder.Build();
 
 string language = "French";
 string history = @"I'm traveling with my kids and one of them has a peanut allergy.";
+string input = @"I'm planning an anniversary trip with my spouse. We like hiking, mountains, 
+    and beaches. Our travel budget is $15000";
 
 // Assign a persona to the prompt
 string prompt = @$"
@@ -58,22 +61,18 @@ var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
 
 // Output
-// Here are some phrases in French you may find helpful:
 
-// Greetings:
-// - Hello - Bonjour [bon-zhur]
-// - Goodbye - Au revoir [oh ruh-vwar]
-// - Thank you - Merci [mehr-see]
+// That sounds like a great trip ahead! Here are a few suggestions:
 
-// Directions:
-// - Go straight ahead - Allez tout droit [ah-lay too dwa]
-// - Turn left/right - Tournez à gauche/droite [toor-nay ah gohsh/dwaht]
-// - It's on the left/right - C'est à gauche/droite [say ah gohsh/dwaht]
+// 1. New Zealand - With stunning mountain ranges, iconic hiking trails, and beautiful beaches, New Zealand is a popular destination for outdoor enthusiasts. Some must-visit spots include the Milford Track, Fox Glacier, and Abel Tasman National Park.
 
-// Food:
-// - Does this contain peanuts? - Est-ce que cela contient des cacahuètes? [ess-kuh suh suh-la kohn-tee-eh day kah-kah-weht?]
-// - My child has a peanut allergy - Mon enfant est allergique aux cacahuètes [mohn ahn-fahn ay ah-lair-gee-k oh kah-kah-weht]
+// 2. Hawaii - Known for its picturesque beaches, Hawaii is also home to several stunning hiking trails. The Kalalau Trail on Kauai is a popular trail that offers breathtaking views of the Na Pali Coast.
 
-// ...
+// 3. Costa Rica - Costa Rica boasts beautiful beaches and breathtaking mountains. Hike through the Monteverde Cloud Forest Reserve and catch a glimpse of exotic wildlife like the resplendent quetzal, or take a dip in the turquoise waters of Playa Manuel Antonio.
 
-// I hope this helps you on your trip!
+// 4. Banff National Park, Canada - Located in the Canadian Rockies, Banff National Park offers some of the most stunning mountain scenery in the world. Explore the park's many hiking trails, relax in hot springs, and take in the beauty of the Canadian wilderness.
+
+// 5. Amalfi Coast, Italy - The Amalfi Coast is a picturesque stretch of coastline in Southern Italy that offers stunning views of the Mediterranean Sea. Take a hike along the famous Path of the Gods or enjoy a romantic stroll through one of the Amalfi Coast's charming towns like Positano or Ravello.
+
+// These are just a few of many options, but with a budget of $15000, you should be able to have a fantastic trip to any of these destinations!
+
