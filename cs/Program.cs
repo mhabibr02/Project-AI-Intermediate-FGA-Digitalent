@@ -36,15 +36,12 @@ string prompt = @$"Create a list of helpful phrases and
 var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
 
-// Output
-// 1. Bonjour - Hello
-// 2. Merci - Thank you
-// 3. Oui - Yes
-// 4. Non - No
-// 5. S'il vous plaît - Please
-// 6. Excusez-moi - Excuse me
-// 7. Parlez-vous anglais? - Do you speak English?
-// 8. Je ne comprends pas - I don't understand
-// 9. Pouvez-vous m'aider? - Can you help me? 
-// 10. Combien ça coûte? - How much does it cost?
-// 11. Où est la gare? - Where is the train station?
+// Restaurant Phrases:
+// - Water, please - De l'eau, s'il vous plaît [duh loh, seel voo pleh]
+// - Check, please - L'addition, s'il vous plaît [lah-di-syo(n), seel voo pleh]
+// - Bon appétit - Bon appétit [bohn ah-peh-teet]
+
+// Transportation Phrases:
+// - Where is the train station? - Où est la gare? [oo-eh lah gahr]
+// - How do I get to...? - Comment aller à...? [ko-mahn tah-lay ah]
+// - I need a taxi - J'ai besoin d'un taxi [zhay buh-zwan dunn tah-xee]
