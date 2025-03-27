@@ -20,9 +20,13 @@ kernel.ImportPluginFromPromptDirectory("Prompts");
 kernel.ImportPluginFromType<CurrencyConverter>();
 var prompts = kernel.ImportPluginFromPromptDirectory("Prompts");
 
+OpenAIPromptExecutionSettings settings = new()
+{
+    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+};
+
 Console.WriteLine("What would you like to do?");
 var input = Console.ReadLine();
-
 var intent = await kernel.InvokeAsync<string>(
     prompts["GetIntent"], 
     new() {{ "input",  input }}
