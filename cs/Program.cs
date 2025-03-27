@@ -22,6 +22,17 @@ string input = @"I'm planning an anniversary trip with my spouse. We like hiking
 var result = await kernel.InvokeAsync<string>(prompts["SuggestDestinations"],
     new() {{ "input", input }});
 
+Console.WriteLine("Where would you like to go?");
+input = Console.ReadLine();
+
+result = await kernel.InvokeAsync<string>(prompts["SuggestActivities"],
+    new() {
+        { "history", history },
+        { "destination", input },
+    }
+);
+
+Console.WriteLine(result);
 Console.WriteLine(result);
 history.AddUserMessage(input);
 history.AddAssistantMessage(result);
