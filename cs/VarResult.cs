@@ -2,6 +2,7 @@ Var result = await kernel.InvokePromptAsync(
 .......”Give me a list of breakfast foods with eggs and cheese”);
     Console.WriteLine(result);
 
+// Output
 // 1. Omelette
 // 2. Frittata
 // 3. Breakfast burrito
